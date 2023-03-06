@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API Access from Web Server</title>
+
+	<script>
+		
+		function myfunction()
+		{
+			const xmlhttp = new XMLHttpRequest();
+
+			var input = document.getElementById("name").value;
+			var url = "https://api.agify.io/?name="+input;
+			
+			xmlhttp.open("GET",url);
+			xmlhttp.send();
+
+			xmlhttp.onload = function(){
+				const myobject = JSON.parse(this.responseText);
+				document.getElementById("age").innerHTML = myobject.age;
+			}
+		}
+
+		function myGender()
+		{
+			const xmlhttp = new XMLHttpRequest();
+
+			var input = document.getElementById("name").value;
+			var url = "https://api.genderize.io/?name="+input;
+			
+			xmlhttp.open("GET",url);
+			xmlhttp.send();
+
+			xmlhttp.onload = function(){
+				const myobject = JSON.parse(this.responseText);
+				document.getElementById("gender").innerHTML = myobject.gender;
+			}
+		}
+		
+
+	</script>
+
+</head>
+<body>
+
+<h1>Name to Age Predictor</h1>
+<form>
+	Name: <input type="text" placeholder="Enter your name" id="name">
+</form>
+
+<h2 id="age">Age</h2>
+
+<h3 id="gender">Gender</h2>
+<p><button onclick="myfunction();myGender()">Show Age and Gender</button></p>	
+
+</body>
+</html>
